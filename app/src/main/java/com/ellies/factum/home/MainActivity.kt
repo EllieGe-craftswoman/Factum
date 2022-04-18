@@ -2,7 +2,6 @@ package com.ellies.factum.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import com.ellies.factum.goals.FactumListActivity
 import com.ellies.factum.counter.CounterActivity
@@ -11,7 +10,7 @@ import com.ellies.mvvm.BaseVMActivity
 
 class MainActivity : BaseVMActivity() {
 
-    private lateinit var mainViewModel: MainBaseViewModel
+    private lateinit var mainViewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +18,7 @@ class MainActivity : BaseVMActivity() {
         mainViewModel = ViewModelProvider(
             this,
             ViewModelProvider.NewInstanceFactory()
-        ).get(MainBaseViewModel::class.java)
+        ).get(MainViewModel::class.java)
         //    setContentView(R.layout.activity_main)
 
 
@@ -37,8 +36,6 @@ class MainActivity : BaseVMActivity() {
             vm = mainViewModel
         }
         setContentView(binding.root)
-
-        Log.d("Hello", "m")
 
         mainViewModel.goToCounterScreenClicked.observe(this) {
             startActivity(Intent(this, CounterActivity::class.java))

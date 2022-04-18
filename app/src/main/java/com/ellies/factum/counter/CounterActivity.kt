@@ -7,7 +7,7 @@ import com.ellies.mvvm.BaseVMActivity
 
 class CounterActivity : BaseVMActivity() {
 
-    private lateinit var counterViewModel: CounterBaseViewModel
+    private lateinit var counterViewModel: CounterViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,7 +16,7 @@ class CounterActivity : BaseVMActivity() {
         counterViewModel = ViewModelProvider(
             this,
             ViewModelProvider.NewInstanceFactory()
-        ).get(CounterBaseViewModel::class.java)
+        ).get(CounterViewModel::class.java)
 
 /*      val activityCounterBinding: ActivityCounterBinding = DataBindingUtil.setContentView<ActivityCounterBinding>(this,
             R.layout.activity_counter

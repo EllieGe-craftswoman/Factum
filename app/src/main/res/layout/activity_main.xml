@@ -6,7 +6,7 @@
 
         <variable
             name="vm"
-            type="com.ellies.factum.home.MainBaseViewModel" />
+            type="com.ellies.factum.home.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"

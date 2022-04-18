@@ -7,7 +7,7 @@ import com.ellies.mvvm.BaseVMActivity
 
 class FactumListActivity : BaseVMActivity() {
 
-    private lateinit var factumListViewModel: FactumListBaseViewModel
+    private lateinit var factumListViewModel: FactumListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,7 +16,7 @@ class FactumListActivity : BaseVMActivity() {
         factumListViewModel = ViewModelProvider(
             this,
             ViewModelProvider.NewInstanceFactory()
-        ).get(FactumListBaseViewModel::class.java)
+        ).get(FactumListViewModel::class.java)
 /*
         val activityGoalsBinding: ActivityGoalsBinding = DataBindingUtil.setContentView<ActivityGoalsBinding>(this,
             R.layout.activity_goals

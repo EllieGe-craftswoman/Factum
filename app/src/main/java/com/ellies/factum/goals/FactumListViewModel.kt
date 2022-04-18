@@ -6,7 +6,7 @@ import com.ellies.factum.goals.FactumUIModelBaseItemUIModel.ToReadUIModelBaseIte
 import com.ellies.factum.goals.FactumUIModelBaseItemUIModel.ToWatchUIModelBaseItemUIModel
 import com.ellies.mvvm.BaseViewModel
 
-class FactumListBaseViewModel : BaseViewModel() {
+class FactumListViewModel : BaseViewModel() {
 
     val factumList = ObservableArrayList<FactumUIModelBaseItemUIModel>()
 
@@ -101,6 +101,7 @@ class FactumListBaseViewModel : BaseViewModel() {
                             it.duration
                         )
                     )
+                    Category.HEADER -> {/*TODO*/}
                 }
             }
         }

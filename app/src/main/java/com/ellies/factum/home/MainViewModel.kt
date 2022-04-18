@@ -3,7 +3,7 @@ package com.ellies.factum.home
 import androidx.lifecycle.MutableLiveData
 import com.ellies.mvvm.BaseViewModel
 
-class MainBaseViewModel : BaseViewModel() {
+class MainViewModel : BaseViewModel() {
 
     val goToCounterScreenClicked = MutableLiveData<Boolean>()
     val goToGoalsScreenClicked = MutableLiveData<Boolean>()
