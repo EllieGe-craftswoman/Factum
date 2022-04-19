@@ -19,16 +19,6 @@ class MainActivity : BaseVMActivity() {
             this,
             ViewModelProvider.NewInstanceFactory()
         ).get(MainViewModel::class.java)
-        //    setContentView(R.layout.activity_main)
-
-
-/*
-
-        val activityMainBinding: ActivityMainBinding = DataBindingUtil.setContentView<ActivityMainBinding>(this,
-            R.layout.activity_main
-        )
-        activityMainBinding.viewmodel = mainViewModel
-*/
 
         val binding = ActivityMainBinding.inflate(layoutInflater)
         binding.apply {

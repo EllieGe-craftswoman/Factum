@@ -1,9 +1,5 @@
 package com.ellies.mvvm.recyclerview
 
-import androidx.recyclerview.widget.RecyclerView
-import com.ellies.mvvm.BaseItemUIModel
-import com.ellies.mvvm.BaseViewModel
-
 /*
 
 public abstract class RecyclerViewBaseViewModel: BaseViewModel() {

@@ -11,17 +11,11 @@ class CounterActivity : BaseVMActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //  setContentView(R.layout.activity_counter)
 
         counterViewModel = ViewModelProvider(
             this,
             ViewModelProvider.NewInstanceFactory()
         ).get(CounterViewModel::class.java)
-
-/*      val activityCounterBinding: ActivityCounterBinding = DataBindingUtil.setContentView<ActivityCounterBinding>(this,
-            R.layout.activity_counter
-        )
-        activityCounterBinding.viewmodel = counterViewModel*/
 
         val binding = ActivityCounterBinding.inflate(layoutInflater)
 

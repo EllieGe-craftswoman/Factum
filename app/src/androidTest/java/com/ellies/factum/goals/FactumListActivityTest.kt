@@ -1,7 +1,6 @@
 package com.ellies.factum.goals
 
 import android.view.View
-import androidx.core.view.size
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ActivityScenario
@@ -15,7 +14,6 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.ellies.factum.R
 import junit.framework.TestCase
 import org.hamcrest.Matcher
-import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith

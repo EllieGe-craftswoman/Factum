@@ -1,3 +1,5 @@
+@file:Suppress("SpellCheckingInspection")
+
 package com.ellies.factum
 
 import androidx.databinding.BindingAdapter
@@ -24,9 +26,9 @@ class BindingAdapters {
             return if (recyclerView.adapter != null && recyclerView.adapter is FactumBindableAdapter) {
                 recyclerView.adapter as FactumBindableAdapter
             } else {
-                val FactumBindableAdapter = FactumBindableAdapter()
-                recyclerView.adapter = FactumBindableAdapter
-                FactumBindableAdapter
+                val factumBindableAdapter = FactumBindableAdapter()
+                recyclerView.adapter = factumBindableAdapter
+                factumBindableAdapter
             }
         }
     }

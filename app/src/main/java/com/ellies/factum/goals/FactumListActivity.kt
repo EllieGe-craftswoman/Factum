@@ -11,17 +11,12 @@ class FactumListActivity : BaseVMActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // setContentView(R.layout.activity_goals)
 
         factumListViewModel = ViewModelProvider(
             this,
             ViewModelProvider.NewInstanceFactory()
         ).get(FactumListViewModel::class.java)
-/*
-        val activityGoalsBinding: ActivityGoalsBinding = DataBindingUtil.setContentView<ActivityGoalsBinding>(this,
-            R.layout.activity_goals
-        )
-        activityGoalsBinding.viewmodel = factumListViewModel*/
+
         val binding = ActivityFactumListBinding.inflate(layoutInflater)
 
         binding.apply {

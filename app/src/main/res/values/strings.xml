@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Factum</string>
     <string name="mins">mins.</string>
+    <string name="hello_to_factum_counter">Hello To Factum Counter!</string>
+    <string name="book_icon">Book icon</string>
+    <string name="video_icon">Video icon</string>
+    <string name="click_me_to_count">Click me to count</string>
+    <string name="hello_to_factum">Hello To Factum!</string>
+    <string name="click_me_for_the_counter_screen">Click me for the counter screen</string>
+    <string name="click_me_for_the_goals_list">Click me for the goals list</string>
 </resources>

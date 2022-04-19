@@ -3,7 +3,7 @@ package com.ellies.factum.counter
 import androidx.databinding.ObservableInt
 import com.ellies.mvvm.BaseViewModel
 
-class CounterViewModel() : BaseViewModel() {
+class CounterViewModel : BaseViewModel() {
 
     val clicks = ObservableInt(0)
 

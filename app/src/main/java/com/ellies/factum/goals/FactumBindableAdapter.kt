@@ -1,5 +1,6 @@
 package com.ellies.factum.goals
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -40,6 +41,8 @@ class FactumBindableAdapter : RecyclerViewAdapterByE<DataItem, FactumUIModelBase
         }
     }
 
+    @Suppress("UNCHECKED_CAST")
+    @SuppressLint("NotifyDataSetChanged")
     fun updateItems(items: ArrayList<FactumUIModelBaseItemUIModel>) {
         this.itemItemUIModels = items as ArrayList<BaseItemUIModel<DataItem>>
         notifyDataSetChanged()

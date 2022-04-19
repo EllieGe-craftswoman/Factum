@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ellies.mvvm.BaseItemUIModel
 
 
-abstract class RecyclerViewAdapterByE<ITEM_T, VIEW_MODEL_T : BaseItemUIModel<ITEM_T>>() :
+abstract class RecyclerViewAdapterByE<ITEM_T, VIEW_MODEL_T : BaseItemUIModel<ITEM_T>> :
     RecyclerView.Adapter<RecyclerViewAdapterByE.BindableItemViewHolder<ITEM_T>>() {
 
     var itemItemUIModels: ArrayList<BaseItemUIModel<ITEM_T>> = ArrayList()
