@@ -1,19 +1,19 @@
 package com.ellies.factum.goals
 
 import android.view.View
+import androidx.annotation.IdRes
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.launchActivity
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.UiController
-import androidx.test.espresso.ViewAction
-import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
+import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.ellies.factum.R
 import junit.framework.TestCase
-import org.hamcrest.Matcher
+import org.hamcrest.Description
+import org.hamcrest.TypeSafeMatcher
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -32,28 +32,26 @@ class FactumListActivityTest : TestCase(){
 
     @Test
     fun whenActivityLaunched_recyclerViewNotEmpty(){
-        val hasItems = getRecyclerViewItemsCount(withId(R.id.factumListRV)) ?: 0 > 0
-        assertTrue(hasItems)
+        //Assert
+        checkForRecyclerViewNotEmpty(R.id.factumListRV)
     }
 
-    private fun getRecyclerViewItemsCount(matcher: Matcher<View>?): Int? {
-        var count :Int? = 0
-        onView(matcher).perform(object: ViewAction {
-            override fun getConstraints(): Matcher<View> {
-                return isAssignableFrom(RecyclerView::class.java)
-            }
+    private fun checkForRecyclerViewNotEmpty(@IdRes rvID: Int){
+        onView(withId(rvID)).check(
+            matches( object: TypeSafeMatcher<View>() {
+                override fun matchesSafely(item: View?): Boolean {
+                    val rv = (item as? RecyclerView) ?: return false
+                    val itemCount =  rv.adapter?.itemCount ?: return false
+                    return itemCount > 0
+                }
 
-            override fun getDescription(): String {
-                return "getting no. of items in recyclerview"
-            }
+                override fun describeTo(description: Description?) {}
 
-            override fun perform(uiController: UiController?, view: View?) {
-                count = (view as RecyclerView).adapter?.itemCount
-            }
-
-        })
-        return count
+            })
+        )
     }
+
+
 
 
     // region helper methods

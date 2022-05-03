@@ -24,7 +24,7 @@ class MainActivityTest : TestCase(){
     private lateinit var activity: ActivityScenario<MainActivity>
 
     @Before
-    public override fun setUp(){
+    fun setup(){
         activity = launchActivity()
         activity.moveToState(Lifecycle.State.RESUMED)
         Intents.init()
@@ -32,13 +32,17 @@ class MainActivityTest : TestCase(){
 
     @Test
     fun counterButtonClicked_launchesCounterActivity() {
+        //Act
         onView(withId(R.id.goToCounterBtn)).perform(click())
+        //Assert
         intended(hasComponent(CounterActivity::class.java.name))
     }
 
     @Test
     fun factumButtonClicked_launchesFactumListActivity(){
+        //Act
         onView(withId(R.id.goToGoalsListBtn)).perform(click())
+        //Assert
         intended(hasComponent(FactumListActivity::class.java.name))
     }
 
