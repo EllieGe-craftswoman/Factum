@@ -8,18 +8,14 @@ import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.intent.Intents.intended
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.ellies.factum.R
 import com.ellies.factum.counter.CounterActivity
 import com.ellies.factum.goals.FactumListActivity
-import junit.framework.TestCase
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
 
-@RunWith(AndroidJUnit4::class)
-class MainActivityTest : TestCase(){
+class MainActivityTest {
 
     private lateinit var activity: ActivityScenario<MainActivity>
 
@@ -47,7 +43,7 @@ class MainActivityTest : TestCase(){
     }
 
     @After
-    public override fun tearDown(){
+    fun tearDown(){
         Intents.release()
     }
 }

@@ -1,7 +1,6 @@
 package com.ellies.factum.goals
 
 import android.view.View
-import androidx.annotation.IdRes
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ActivityScenario
@@ -9,18 +8,13 @@ import androidx.test.core.app.launchActivity
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.ellies.factum.R
-import junit.framework.TestCase
 import org.hamcrest.Description
 import org.hamcrest.TypeSafeMatcher
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
 
-
-@RunWith(AndroidJUnit4::class)
-class FactumListActivityTest : TestCase(){
+class FactumListActivityTest {
 
     private lateinit var activity: ActivityScenario<FactumListActivity>
 
@@ -33,28 +27,19 @@ class FactumListActivityTest : TestCase(){
     @Test
     fun whenActivityLaunched_recyclerViewNotEmpty(){
         //Assert
-        checkForRecyclerViewNotEmpty(R.id.factumListRV)
+        onView(withId(R.id.factumListRV)).check(notEmptyRecyclerViewMatcher())
     }
-
-    private fun checkForRecyclerViewNotEmpty(@IdRes rvID: Int){
-        onView(withId(rvID)).check(
-            matches( object: TypeSafeMatcher<View>() {
-                override fun matchesSafely(item: View?): Boolean {
-                    val rv = (item as? RecyclerView) ?: return false
-                    val itemCount =  rv.adapter?.itemCount ?: return false
-                    return itemCount > 0
-                }
-
-                override fun describeTo(description: Description?) {}
-
-            })
-        )
-    }
-
-
-
 
     // region helper methods
+
+    private fun notEmptyRecyclerViewMatcher() = matches( object: TypeSafeMatcher<View>() {
+        override fun matchesSafely(item: View?): Boolean {
+            val rv = (item as? RecyclerView) ?: throw AssertionError("Expected a RecyclerView, but couldn't cast view provided to RecyclerView.")
+            val itemCount =  rv.adapter?.itemCount ?: return false
+            return itemCount > 0
+        }
+        override fun describeTo(description: Description?) {}
+    })
 
     // endregion helper methods
 
