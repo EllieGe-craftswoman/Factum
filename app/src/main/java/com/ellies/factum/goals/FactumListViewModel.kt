@@ -148,7 +148,8 @@ class FactumListViewModel : BaseViewModel() {
     private fun writeDataToRealm(list: List<RealmDataItem>) {
         /* With Coroutines */
          CoroutineScope(context = viewModelScope.coroutineContext).async {
-             //TODO: Warning Deferred result is never used
+             //TODO: Warning Deferred result is never used/
+             //TODO: USE SUSPEND FUNCTIONS INSTEAD
              for(realmDataItem in list){
                 realm.writeBlocking {
                    copyToRealm(realmDataItem)
