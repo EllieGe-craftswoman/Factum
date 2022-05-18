@@ -1,4 +1,4 @@
-package com.ellies.factum.goals
+package com.ellies.factum.ui.goals
 
 enum class Category(val readableText: String) {
     HEADER(""), //TODO: WHERE BETTER TO HAVE THIS?

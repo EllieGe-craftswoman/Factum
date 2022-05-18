@@ -1,4 +1,4 @@
-package com.ellies.factum.home
+package com.ellies.factum.ui.home
 
 import androidx.lifecycle.MutableLiveData
 import com.ellies.mvvm.BaseViewModel

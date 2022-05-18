@@ -1,4 +1,4 @@
-package com.ellies.factum.goals
+package com.ellies.factum.ui.goals
 
 fun List<DataItem>.map() : List<RealmDataItem> {
     val list = mutableListOf<RealmDataItem>()

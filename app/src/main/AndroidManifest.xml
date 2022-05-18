@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Factum">
         <activity
-            android:name=".home.MainActivity"
+            android:name="com.ellies.factum.ui.home.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,11 +19,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".counter.CounterActivity"
+            android:name="com.ellies.factum.ui.counter.CounterActivity"
             android:exported="true">
         </activity>
         <activity
-            android:name=".goals.FactumListActivity"
+            android:name="com.ellies.factum.ui.goals.FactumListActivity"
             android:exported="true">
         </activity>
     </application>

@@ -1,10 +1,10 @@
-package com.ellies.factum.goals
+package com.ellies.factum.ui.goals
 
 import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.viewModelScope
-import com.ellies.factum.goals.FactumUIModel.HeaderUIModel
-import com.ellies.factum.goals.FactumUIModel.ToReadUIModel
-import com.ellies.factum.goals.FactumUIModel.ToWatchUIModel
+import com.ellies.factum.ui.goals.FactumUIModel.HeaderUIModel
+import com.ellies.factum.ui.goals.FactumUIModel.ToReadUIModel
+import com.ellies.factum.ui.goals.FactumUIModel.ToWatchUIModel
 import com.ellies.mvvm.BaseViewModel
 import io.realm.Realm
 import io.realm.RealmConfiguration

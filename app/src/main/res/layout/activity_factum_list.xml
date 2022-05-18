@@ -6,13 +6,13 @@
 
         <variable
             name="vm"
-            type="com.ellies.factum.goals.FactumListViewModel" />
+            type="com.ellies.factum.ui.goals.FactumListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".goals.FactumListActivity">
+        tools:context=".ui.goals.FactumListActivity">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/factumListRV"

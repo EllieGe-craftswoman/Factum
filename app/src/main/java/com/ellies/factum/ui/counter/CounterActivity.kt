@@ -1,4 +1,4 @@
-package com.ellies.factum.counter
+package com.ellies.factum.ui.counter
 
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider

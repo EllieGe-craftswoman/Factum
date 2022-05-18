@@ -1,10 +1,10 @@
-package com.ellies.factum.home
+package com.ellies.factum.ui.home
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
-import com.ellies.factum.goals.FactumListActivity
-import com.ellies.factum.counter.CounterActivity
+import com.ellies.factum.ui.goals.FactumListActivity
+import com.ellies.factum.ui.counter.CounterActivity
 import com.ellies.factum.databinding.ActivityMainBinding
 import com.ellies.mvvm.BaseVMActivity
 

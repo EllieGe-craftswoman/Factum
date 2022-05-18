@@ -1,4 +1,4 @@
-package com.ellies.factum.goals
+package com.ellies.factum.ui.goals
 
 import com.ellies.factum.R
 import com.ellies.mvvm.BaseItemUIModel

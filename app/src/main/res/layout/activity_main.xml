@@ -6,13 +6,13 @@
 
         <variable
             name="vm"
-            type="com.ellies.factum.home.MainViewModel" />
+            type="com.ellies.factum.ui.home.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".home.MainActivity">
+        tools:context=".ui.home.MainActivity">
 
         <TextView
             android:id="@+id/welcomeTV"

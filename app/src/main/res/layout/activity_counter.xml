@@ -6,13 +6,13 @@
 
         <variable
             name="vm"
-            type="com.ellies.factum.counter.CounterViewModel" />
+            type="com.ellies.factum.ui.counter.CounterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".counter.CounterActivity">
+        tools:context=".ui.counter.CounterActivity">
 
         <TextView
             android:id="@+id/welcomeTV"

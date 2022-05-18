@@ -4,8 +4,8 @@ package com.ellies.factum
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.ellies.factum.goals.FactumBindableAdapter
-import com.ellies.factum.goals.FactumUIModel
+import com.ellies.factum.ui.goals.FactumBindableAdapter
+import com.ellies.factum.ui.goals.FactumUIModel
 
 
 class BindingAdapters {

@@ -1,4 +1,4 @@
-package com.ellies.factum.counter
+package com.ellies.factum.ui.counter
 
 import androidx.lifecycle.Lifecycle
 import androidx.test.core.app.ActivityScenario
