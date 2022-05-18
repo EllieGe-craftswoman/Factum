@@ -6,7 +6,7 @@
 
         <variable
             name="itemModel"
-            type="com.ellies.factum.goals.FactumUIModelBaseItemUIModel.HeaderUIModelBaseItemUIModel" />
+            type="com.ellies.factum.goals.FactumUIModel.HeaderUIModel" />
     </data>
 
     <LinearLayout

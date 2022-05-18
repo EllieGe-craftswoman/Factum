@@ -5,7 +5,7 @@ package com.ellies.factum
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.ellies.factum.goals.FactumBindableAdapter
-import com.ellies.factum.goals.FactumUIModelBaseItemUIModel
+import com.ellies.factum.goals.FactumUIModel
 
 
 class BindingAdapters {
@@ -16,7 +16,7 @@ class BindingAdapters {
         @BindingAdapter("items")
         fun bindItemViewModels(
             recyclerView: RecyclerView,
-            items: ArrayList<FactumUIModelBaseItemUIModel>
+            items: ArrayList<FactumUIModel>
         ) {
             val adapter = getOrCreateAdapter(recyclerView)
             adapter.updateItems(items)

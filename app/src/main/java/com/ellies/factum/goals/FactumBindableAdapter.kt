@@ -10,7 +10,7 @@ import com.ellies.mvvm.BaseItemUIModel
 import com.ellies.mvvm.recyclerview.RecyclerViewAdapterByE
 
 
-class FactumBindableAdapter : RecyclerViewAdapterByE<DataItem, FactumUIModelBaseItemUIModel>() {
+class FactumBindableAdapter : RecyclerViewAdapterByE<DataItem, FactumUIModel>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -26,7 +26,7 @@ class FactumBindableAdapter : RecyclerViewAdapterByE<DataItem, FactumUIModelBase
     }
 
     override fun getItemViewType(position: Int): Int {
-        val item = itemItemUIModels[position] as FactumUIModelBaseItemUIModel
+        val item = itemItemUIModels[position] as FactumUIModel
         if (!viewTypeToLayoutId.containsKey(item.category.ordinal)) {
             viewTypeToLayoutId[item.category.ordinal] = item.layoutId
         }
@@ -43,7 +43,7 @@ class FactumBindableAdapter : RecyclerViewAdapterByE<DataItem, FactumUIModelBase
 
     @Suppress("UNCHECKED_CAST")
     @SuppressLint("NotifyDataSetChanged")
-    fun updateItems(items: ArrayList<FactumUIModelBaseItemUIModel>) {
+    fun updateItems(items: ArrayList<FactumUIModel>) {
         this.itemItemUIModels = items as ArrayList<BaseItemUIModel<DataItem>>
         notifyDataSetChanged()
     }

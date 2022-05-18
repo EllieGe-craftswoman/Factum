@@ -1,20 +1,80 @@
 package com.ellies.factum.goals
 
 import androidx.databinding.ObservableArrayList
-import com.ellies.factum.goals.FactumUIModelBaseItemUIModel.HeaderUIModelBaseItemUIModel
-import com.ellies.factum.goals.FactumUIModelBaseItemUIModel.ToReadUIModelBaseItemUIModel
-import com.ellies.factum.goals.FactumUIModelBaseItemUIModel.ToWatchUIModelBaseItemUIModel
+import androidx.lifecycle.viewModelScope
+import com.ellies.factum.goals.FactumUIModel.HeaderUIModel
+import com.ellies.factum.goals.FactumUIModel.ToReadUIModel
+import com.ellies.factum.goals.FactumUIModel.ToWatchUIModel
 import com.ellies.mvvm.BaseViewModel
+import io.realm.Realm
+import io.realm.RealmConfiguration
+import io.realm.query
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 class FactumListViewModel : BaseViewModel() {
 
-    val factumList = ObservableArrayList<FactumUIModelBaseItemUIModel>()
+    val factumList = ObservableArrayList<FactumUIModel>()
 
+    lateinit var config : RealmConfiguration
+    lateinit var realm : Realm
+
+    /* Block To use Local Source for Data - Realm */
     init {
-        loadData()
+        openRealm()
+        fetchDataFromRealm()
     }
 
-    private fun loadData() {
+    /* Block for loading Dummy Data */
+    /*init {
+        loadDummyData(DataAction.DISPLAY)
+    }*/
+
+    private fun openRealm() {
+        config = RealmConfiguration.Builder(schema = setOf(RealmDataItem::class))
+            .build()
+        realm = Realm.open(config)
+    }
+
+
+    private fun fetchDataFromRealm() {
+        /* With Coroutines*/
+        //Try to fetch data first
+        val fetchALlQuery = realm.query<RealmDataItem>()
+
+        viewModelScope.launch {
+            fetchALlQuery.asFlow().collect {
+                //If realm data is empty, add data the try to fetch again
+                //If not empty add to list
+                //TODO: how to add the whole list when flow is completed?
+                //TODO: BAD APPROACH TO CALL PREPAREDATA FOR DISPLAY FROM HERE
+                if(it.list.isEmpty())
+                    loadDummyData(DataAction.SAVE_TO_LOCAL_DATABASE)
+                else
+                    prepareDataForDisplay(it.list.map())
+            }
+        }
+      /*
+        *//*Directly through Realm Object*//*
+        //Try to fetch data first
+        val fetchALlQuery = realm.query<RealmDataItem>()
+        val retrievedRealmData: RealmResults<RealmDataItem> = fetchALlQuery.find()
+
+        //If realm data is empty, add data the try to fetch again
+        //If not empty map & display
+        if(retrievedRealmData.isEmpty()){
+            loadDummyData(DataAction.SAVE_TO_LOCAL_DATABASE)
+            fetchDataFromRealm()
+        } else {
+            prepareDataForDisplay(retrievedRealmData.map())
+        }
+        */
+
+
+    }
+
+    private fun loadDummyData(action: DataAction) {
         val dataItems = mutableListOf<DataItem>()
 
         dataItems.apply {
@@ -78,25 +138,50 @@ class FactumListViewModel : BaseViewModel() {
             )
         }
 
-        prepareDataForDisplay(dataItems)
+        when(action){
+            DataAction.DISPLAY -> prepareDataForDisplay(dataItems)
+            DataAction.SAVE_TO_LOCAL_DATABASE -> writeDataToRealm(dataItems.map())
+        }
+
+    }
+
+    private fun writeDataToRealm(list: List<RealmDataItem>) {
+        /* With Coroutines */
+         CoroutineScope(context = viewModelScope.coroutineContext).async {
+             //TODO: Warning Deferred result is never used
+             for(realmDataItem in list){
+                realm.writeBlocking {
+                   copyToRealm(realmDataItem)
+                }
+             }
+             fetchDataFromRealm()
+         }
+
+      /* /*Directly through Realm Object*/
+        for(realmDataItem in list){
+            realm.writeBlocking {
+                copyToRealm(realmDataItem)
+            }
+        }*/
     }
 
     private fun prepareDataForDisplay(dataItems: List<DataItem>) {
         val groupedData = dataItems.groupBy { it.category }
 
+        factumList.clear()
         groupedData.keys.forEach { category ->
-            factumList.add(HeaderUIModelBaseItemUIModel(category.readableText))
+            factumList.add(HeaderUIModel(category.readableText))
             val list = groupedData[category]
             list?.forEach {
                 when (category) {
                     Category.TO_READ -> factumList.add(
-                        ToReadUIModelBaseItemUIModel(
+                        ToReadUIModel(
                             it.title,
                             it.description
                         )
                     )
                     Category.TO_WATCH -> factumList.add(
-                        ToWatchUIModelBaseItemUIModel(
+                        ToWatchUIModel(
                             it.title,
                             it.duration
                         )

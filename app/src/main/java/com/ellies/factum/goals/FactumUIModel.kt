@@ -3,11 +3,12 @@ package com.ellies.factum.goals
 import com.ellies.factum.R
 import com.ellies.mvvm.BaseItemUIModel
 
-sealed class FactumUIModelBaseItemUIModel : BaseItemUIModel<DataItem>() {
+//TODO: NO NEED TO REFERENCE DATA ITEM HERE
+sealed class FactumUIModel : BaseItemUIModel<DataItem>() {
     abstract val layoutId: Int
     abstract val category: Category
 
-    class HeaderUIModelBaseItemUIModel(val title: String) : FactumUIModelBaseItemUIModel() {
+    class HeaderUIModel(val title: String) : FactumUIModel() {
         override val layoutId: Int
             get() = R.layout.item_header
         override val category: Category
@@ -15,8 +16,8 @@ sealed class FactumUIModelBaseItemUIModel : BaseItemUIModel<DataItem>() {
 
     }
 
-    class ToReadUIModelBaseItemUIModel(val title: String, val description: String?) :
-        FactumUIModelBaseItemUIModel() {
+    class ToReadUIModel(val title: String, val description: String?) :
+        FactumUIModel() {
         override val layoutId: Int
             get() = R.layout.item_to_read
         override val category: Category
@@ -24,8 +25,8 @@ sealed class FactumUIModelBaseItemUIModel : BaseItemUIModel<DataItem>() {
 
     }
 
-    class ToWatchUIModelBaseItemUIModel(val title: String, val duration: Int?) :
-        FactumUIModelBaseItemUIModel() {
+    class ToWatchUIModel(val title: String, val duration: Int?) :
+        FactumUIModel() {
         override val layoutId: Int
             get() = R.layout.item_to_watch
         override val category: Category
