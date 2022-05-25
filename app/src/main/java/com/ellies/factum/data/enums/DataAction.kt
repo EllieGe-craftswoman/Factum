@@ -1,4 +1,4 @@
-package com.ellies.factum.ui.goals
+package com.ellies.factum.data.enums
 
 enum class DataAction {
     SAVE_TO_LOCAL_DATABASE,

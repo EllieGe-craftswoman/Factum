@@ -1,4 +1,4 @@
-package com.ellies.factum.ui.goals
+package com.ellies.factum.data.enums
 
 data class DataItem(
     val title: String,

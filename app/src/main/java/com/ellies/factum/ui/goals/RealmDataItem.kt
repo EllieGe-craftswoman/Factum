@@ -1,5 +1,6 @@
 package com.ellies.factum.ui.goals
 
+import com.ellies.factum.data.enums.Category
 import io.realm.RealmObject
 
 open class RealmDataItem : RealmObject {

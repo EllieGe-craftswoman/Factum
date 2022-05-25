@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.ellies.factum.BR
+import com.ellies.factum.data.enums.DataItem
 import com.ellies.mvvm.BaseItemUIModel
 import com.ellies.mvvm.recyclerview.RecyclerViewAdapterByE
 

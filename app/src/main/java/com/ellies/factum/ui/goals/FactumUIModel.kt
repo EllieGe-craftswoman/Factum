@@ -1,10 +1,9 @@
 package com.ellies.factum.ui.goals
 
 import com.ellies.factum.R
-import com.ellies.mvvm.BaseItemUIModel
+import com.ellies.factum.data.enums.Category
 
-//TODO: NO NEED TO REFERENCE DATA ITEM HERE
-sealed class FactumUIModel : BaseItemUIModel<DataItem>() {
+sealed class FactumUIModel {
     abstract val layoutId: Int
     abstract val category: Category
 
