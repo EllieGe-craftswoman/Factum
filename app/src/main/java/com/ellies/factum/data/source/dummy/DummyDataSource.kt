@@ -1,10 +1,13 @@
-package com.ellies.factum.domain
+package com.ellies.factum.data.source.dummy
 
 import com.ellies.factum.data.enums.Category
 import com.ellies.factum.data.enums.DataItem
+import com.ellies.factum.data.mapToUIModelList
+import com.ellies.factum.domain.DataSource
+import com.ellies.factum.ui.goals.FactumUIModel
 
-class DummyDataSource {
-    fun getFactumList(): List<DataItem> {
+class DummyDataSource : DataSource{
+    override suspend fun getFactumList(): List<FactumUIModel> {
         val dataItems = mutableListOf<DataItem>()
         dataItems.apply {
             add(
@@ -66,7 +69,7 @@ class DummyDataSource {
                 )
             )
         }
-        return dataItems
+        return dataItems.mapToUIModelList()
     }
 }
 

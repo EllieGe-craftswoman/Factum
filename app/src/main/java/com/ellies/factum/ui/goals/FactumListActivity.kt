@@ -15,7 +15,7 @@ class FactumListActivity : BaseVMActivity() {
         factumListViewModel = ViewModelProvider(
             this,
             ViewModelProvider.NewInstanceFactory()
-        ).get(FactumListViewModel::class.java)
+        )[FactumListViewModel::class.java]
 
         val binding = ActivityFactumListBinding.inflate(layoutInflater)
 

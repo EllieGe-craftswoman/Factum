@@ -5,24 +5,6 @@ import com.ellies.factum.data.enums.DataItem
 import com.ellies.factum.ui.goals.FactumUIModel
 import com.ellies.factum.ui.goals.RealmDataItem
 
-fun List<DataItem>.map() : List<RealmDataItem> {
-    val list = mutableListOf<RealmDataItem>()
-    for (item in this){
-        list.add(item.map())
-    }
-    return list
-}
-
-fun DataItem.map() : RealmDataItem {
-    val dataItem = this
-    return RealmDataItem().apply {
-        title = dataItem.title
-        description = dataItem.description
-        duration = dataItem.duration
-        category = dataItem.category
-    }
-}
-
 @JvmName("mapRealmDataItem")
 fun List<RealmDataItem>.map() : List<DataItem> {
     val list = mutableListOf<DataItem>()
@@ -58,9 +40,33 @@ fun List<DataItem>.mapToUIModelList(): List<FactumUIModel> {
                         it.duration
                     )
                 )
-                Category.HEADER -> {/*TODO*/}
+                else -> {/*DO NOTHING*/}
             }
         }
     }
     return  result
+}
+
+fun List<FactumUIModel>.mapToRealmList(): List<RealmDataItem> {
+    val result = mutableListOf<RealmDataItem>()
+    for (item in this){
+        item.map()?.let { result.add(it) }
+    }
+    return  result
+}
+
+fun FactumUIModel.map(): RealmDataItem? {
+    return when(val uiModel = this){
+        is FactumUIModel.ToReadUIModel -> RealmDataItem().apply {
+            this.title = uiModel.title
+            description = uiModel.description
+            category = uiModel.category
+        }
+        is FactumUIModel.ToWatchUIModel -> RealmDataItem().apply {
+            this.title = uiModel.title
+            duration = uiModel.duration
+            category = uiModel.category
+        }
+        else -> null
+    }
 }

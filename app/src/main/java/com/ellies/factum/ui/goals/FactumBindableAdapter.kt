@@ -10,7 +10,6 @@ import com.ellies.factum.data.enums.DataItem
 import com.ellies.mvvm.BaseItemUIModel
 import com.ellies.mvvm.recyclerview.RecyclerViewAdapterByE
 
-
 class FactumBindableAdapter : RecyclerViewAdapterByE<DataItem, FactumUIModel>() {
 
     override fun onCreateViewHolder(

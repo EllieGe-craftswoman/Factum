@@ -1,5 +1,9 @@
-package com.ellies.factum.domain
+package com.ellies.factum.data.source.local
 
+import com.ellies.factum.data.map
+import com.ellies.factum.data.mapToRealmList
+import com.ellies.factum.data.mapToUIModelList
+import com.ellies.factum.domain.DataSource
 import com.ellies.factum.ui.goals.FactumUIModel
 import com.ellies.factum.ui.goals.RealmDataItem
 import io.realm.Realm
@@ -10,7 +14,7 @@ import kotlinx.coroutines.withContext
 
 class LocalDataSource(
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.Default
-) {
+) : DataSource {
     lateinit var config: RealmConfiguration
     lateinit var realm: Realm
 
@@ -24,17 +28,15 @@ class LocalDataSource(
         realm = Realm.open(config)
     }
 
-    suspend fun getFactumList(): List<FactumUIModel> {
-        withContext(defaultDispatcher) {
-            realm.query<RealmDataItem>().asFlow().collect {
-
-            }
+    override suspend fun getFactumList(): List<FactumUIModel> {
+        return withContext(defaultDispatcher) {
+            realm.query(RealmDataItem::class).find().map().mapToUIModelList()
         }
     }
 
-    suspend fun saveDummyData(factumList: List<RealmDataItem>) {
+    suspend fun saveDummyData(factumList: List<FactumUIModel>) {
         withContext(defaultDispatcher) {
-            for (realmDataItem in factumList) {
+            for (realmDataItem in factumList.mapToRealmList()) {
                 realm.writeBlocking {
                     copyToRealm(realmDataItem)
                 }

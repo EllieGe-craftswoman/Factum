@@ -1,26 +1,28 @@
 package com.ellies.factum.ui.goals
 
 import androidx.databinding.ObservableArrayList
-import com.ellies.factum.data.RepositoryImpl
-import com.ellies.factum.domain.DummyDataSource
-import com.ellies.factum.domain.LocalDataSource
+import androidx.lifecycle.viewModelScope
+import com.ellies.factum.data.FactumRepositoryImpl
+import com.ellies.factum.data.source.dummy.DummyDataSource
+import com.ellies.factum.data.source.local.LocalDataSource
 import com.ellies.mvvm.BaseViewModel
+import kotlinx.coroutines.launch
 
 class FactumListViewModel : BaseViewModel() {
 
     val factumList = ObservableArrayList<FactumUIModel>()
-    val dataSourceType = DataSourceType.DUMMY
 
-    private val repositoryImpl = RepositoryImpl(DummyDataSource(), LocalDataSource())
+    private val repositoryImpl = FactumRepositoryImpl(DummyDataSource(), LocalDataSource())
 
-    suspend fun fetchData(){
-        factumList.clear()
-        val fetchedData = repositoryImpl.pullFactumList(dataSourceType)
-        if(fetchedData.isEmpty()){
-            repositoryImpl.pushFactumList()
-        } else {
-            factumList.addAll(fetchedData)
+    init {
+        viewModelScope.launch {
+            fetchData()
         }
+    }
+    private suspend fun fetchData(){
+        factumList.clear()
+        val fetchedData = repositoryImpl.pullFactumList()
+        factumList.addAll(fetchedData)
     }
 
 }

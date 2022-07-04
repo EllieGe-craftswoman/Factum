@@ -2,8 +2,11 @@ package com.ellies.factum.ui.goals
 
 import com.ellies.factum.R
 import com.ellies.factum.data.enums.Category
+import com.ellies.factum.data.enums.DataItem
+import com.ellies.mvvm.BaseItemUIModel
 
-sealed class FactumUIModel {
+
+sealed class FactumUIModel: BaseItemUIModel<DataItem>() {
     abstract val layoutId: Int
     abstract val category: Category
 
@@ -12,7 +15,6 @@ sealed class FactumUIModel {
             get() = R.layout.item_header
         override val category: Category
             get() = Category.HEADER
-
     }
 
     class ToReadUIModel(val title: String, val description: String?) :
